@@ -1,27 +1,62 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
   const [todo, setTodo] = useState("")
   const [todos, setTodos] = useState([])
+  const [showFinished, setShowFinished] = useState(true)
 
-  const handleEdit = () => {
+  useEffect(() => {
+    let todoString = localStorage.getItem("todos");
+    if (todoString) {
+    let todos = JSON.parse(localStorage.getItem("todos")) 
+    setTodos(todos);
+    }
+  }, [])
+  
+  const saveToLS = (params) => {
+    localStorage.setItem("todos", JSON.stringify(todos));
   }
 
-  const handleDelete = () => {
+  const toggleShowFinished = (params) => {
+  }
+  const handleEdit = (e, id) => {
+    let t = todos.filter(i=>i.id === id)
+    setTodo(t[0].todo)
+        let newTodos = todos.filter(item => {
+      return item.id !== id;
+    });
+    setTodos(newTodos);
+    saveToLS()
+  }
 
-
+  const handleDelete = (e, id) => {
+    let newTodos = todos.filter(item => {
+      return item.id !== id;
+    });
+    setTodos(newTodos);
+    saveToLS()
   }
   const handleAdd = () => {
-    setTodos([...todos, {todo, isCompleted: false}])
+    setTodos([...todos, {id: uuidv4(), todo, isCompleted: false}])
     setTodo("")
-    console.log(todos)
+    saveToLS()
   }
 
   const handleChange = (e) => {
     setTodo(e.target.value)
   }
-
+  const handleCheckbox = (e) => {
+    let id = e.target.name;
+    let index = todos.findIndex(item=>{
+      return item.id === id;
+    })
+    let newTodos = [...todos];
+    newTodos[index].isCompleted = !newTodos[index].isCompleted;
+    setTodos(newTodos);
+    saveToLS()
+  }
   return (
     <>
     <Navbar/>
@@ -30,19 +65,33 @@ function App() {
         <div className="addTodo my-5">
           <h2 className='text-lg font-bold'>Add a Todo</h2>
           <input onChange={handleChange} value={todo} type="text" className='w-1/2'/>
-          <button onClick={handleAdd}className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md mx-6'>Add</button>
+          <button onClick={handleAdd}className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md mx-6'>Save</button>
         </div>
+        <input type="checkbox" checked = {showFinished} /> show finished
         <h2 className='text-lg font-bold'>Your Todos</h2>
          <div className="todos">
-  {todos.map((item, idx) => (
-  <div key={idx} className="todo flex w-full items-center mb-2">
-    <div className={`${item.isCompleted ? "" : "line-through"} mr-40`} style={{ minWidth: "120px" }}>{item.todo}</div>
-    <div className="buttons flex flex-row justify-end space-x-1">
-      <button onClick={() => handleEdit(idx)} className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md'>Edit</button>
-      <button onClick={() => handleDelete(idx)} className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md'>Delete</button>
+          {todos.length === 0 && <div className='text-center text-gray-500'>No todos added yet!</div>}
+{todos.map(item => (
+  <div key={item.id} className="todo flex w-full items-center my-3 p-2 bg-white rounded-md shadow-md">
+    <div className="flex items-center gap-3 flex-1 min-w-0">
+      <input
+        name={item.id}
+        onChange={handleCheckbox}
+        type="checkbox"
+        checked={item.isCompleted}
+      />
+      <div
+        className={`${item.isCompleted ? "line-through" : ""} break-words max-w-md`}
+      >
+        {item.todo}
+      </div>
+    </div>
+    <div className="buttons flex flex-row gap-x-2 ml-2">
+      <button onClick={e => handleEdit(e, item.id)} className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md'>Edit</button>
+      <button onClick={e => handleDelete(e, item.id)} className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md'>Delete</button>
     </div>
   </div>
-  ))}
+))}
 </div>
     </div>
     </>
