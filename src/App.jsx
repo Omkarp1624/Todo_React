@@ -17,6 +17,10 @@ function App() {
     }
   }, [])
 
+  useEffect(() => {
+    document.title = "PlanPal - Your Task Planner";
+  }, []);
+
   const saveToLS = () => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }
