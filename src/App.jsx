@@ -59,7 +59,7 @@ function App() {
     <>
       <Navbar />
       <div className="container mx-auto my-8 rounded-xl p-4 sm:p-8 bg-violet-100 min-h-[80vh] max-w-2xl shadow-lg">
-        <h1 className='font-bold text-center text-2xl mb-6 text-violet-900'>iTask - Manage your todos at one place</h1>
+        <h1 className='font-bold text-center text-2xl mb-6 text-violet-900'>PlanPal - Manage your todos at one place</h1>
         <div className="addTodo mb-8 flex flex-col gap-3 bg-white p-4 rounded-lg shadow">
           <h2 className='text-lg font-bold text-violet-800'>Add a Todo</h2>
           <div className="flex gap-2 flex-col sm:flex-row">
