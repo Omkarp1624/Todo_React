@@ -1,12 +1,47 @@
-# React + Vite
+# PlanPal 📝
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**PlanPal** is a clean and simple ToDo app built with React and Vite. It helps you manage your daily tasks in one place with a responsive interface.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔗 Live Demo
 
-## Expanding the ESLint configuration
+👉 [Visit PlanPal on Vercel](https://planpal-todo.vercel.app)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Features
+
+- ✅ Add, edit, delete tasks
+- ✅ Mark tasks as complete
+- ✅ Toggle visibility of completed tasks
+- ✅ User-friendly UI with icons
+- ✅ Instant updates with React state
+- 🧠 (Planned) Local storage support for task persistence
+
+---
+
+## 🛠️ Tech Stack
+
+- **React** (with Hooks)
+- **Vite** for fast dev and build
+- **CSS** for basic styling
+- **Vercel** for deployment
+
+---
+
+## 📸 Screenshots
+
+
+---![PlanPal - todo](https://github.com/user-attachments/assets/caa289ba-1102-40c2-9481-334262f319e6)
+
+
+## 📁 Getting Started
+
+To run this project locally:
+
+```bash
+git clone https://github.com/Omkarp1624/Todo_React.git
+cd Todo_React
+npm install
+npm run dev
