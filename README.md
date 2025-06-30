@@ -33,7 +33,7 @@
 ## 📸 Screenshots
 
 
----![PlanPal - todo](https://github.com/user-attachments/assets/caa289ba-1102-40c2-9481-334262f319e6)
+![PlanPal - todo](https://github.com/user-attachments/assets/caa289ba-1102-40c2-9481-334262f319e6)
 
 
 ## 📁 Getting Started
